@@ -9,7 +9,6 @@ import freemarker.template.TemplateExceptionHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.Locale;
@@ -36,8 +35,8 @@ public class FreemarkerUtil {
             templatePath = templatePath.substring(0, wei);
         }
 
-        try {
-            freemarkerConfig.setDirectoryForTemplateLoading(new File(templatePath, "xxl-code-generator"));
+            freemarkerConfig.setClassForTemplateLoading(FreemarkerUtil.class,"/xxl-code-generator");
+//            freemarkerConfig.setDirectoryForTemplateLoading(new File(templatePath, "xxl-code-generator"));
             freemarkerConfig.setNumberFormat("#");
             freemarkerConfig.setClassicCompatible(true);
             freemarkerConfig.setDefaultEncoding("UTF-8");
@@ -51,9 +50,7 @@ public class FreemarkerUtil {
             stringFreemarkerConfig.setDefaultEncoding("UTF-8");
             stringFreemarkerConfig.setLocale(Locale.CHINA);
             stringFreemarkerConfig.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
-        } catch (IOException e) {
-            logger.error(e.getMessage(), e);
-        }
+
     }
 
     /**

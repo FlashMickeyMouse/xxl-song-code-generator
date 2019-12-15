@@ -13,8 +13,12 @@ import java.util.Date;
 /**
 *  ${classInfo.classComment}
 *
-*  Created by xuxueli on '${.now?string('yyyy-MM-dd HH:mm:ss')}'.
+*  Created by songhao on '${.now?string('yyyy-MM-dd HH:mm:ss')}'.
 */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@TableName("${classInfo.tableName}")
 public class ${classInfo.className} implements Serializable {
     private static final long serialVersionUID = 42L;
 
@@ -23,23 +27,7 @@ public class ${classInfo.className} implements Serializable {
     /**
     * ${fieldItem.fieldComment}
     */
-    <#if fieldItem.fieldClass =="Date">
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    </#if>
     private ${fieldItem.fieldClass} ${fieldItem.fieldName};
-
-</#list>
-</#if>
-
-<#if classInfo.fieldList?exists && classInfo.fieldList?size gt 0>
-<#list classInfo.fieldList as fieldItem>
-    public ${fieldItem.fieldClass} get${fieldItem.fieldName?cap_first}() {
-        return ${fieldItem.fieldName};
-    }
-
-    public void set${fieldItem.fieldName?cap_first}(${fieldItem.fieldClass} ${fieldItem.fieldName}) {
-        this.${fieldItem.fieldName} = ${fieldItem.fieldName};
-    }
 
 </#list>
 </#if>

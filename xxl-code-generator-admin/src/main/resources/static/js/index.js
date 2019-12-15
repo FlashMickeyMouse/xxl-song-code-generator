@@ -67,6 +67,7 @@ $(function () {
     var dao_ide;
     var mybatis_ide;
     var model_ide;
+    var iview_ide;
 
     function initCodeArea() {
 
@@ -152,6 +153,17 @@ $(function () {
             gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
         });
         model_ide.setSize('auto', 'auto');
+        // iview_ide
+        iview_ide = CodeMirror.fromTextArea(document.getElementById("iview_ide"), {
+            lineNumbers: true,
+            matchBrackets: true,
+            mode: "text/x-java",
+            lineWrapping: true,
+            readOnly: true,
+            foldGutter: true,
+            gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+        });
+        iview_ide.setSize('auto', 'auto');
     }
 
     initCodeArea();
@@ -194,6 +206,9 @@ $(function () {
 
                             model_ide.setValue(data.data.model_code);
                             model_ide.setSize('auto', 'auto');
+
+                            iview_ide.setValue(data.data.iview_code);
+                            iview_ide.setSize('auto', 'auto');
 
                         }
                     });

@@ -85,11 +85,11 @@
 <#macro commonFooter >
 <footer class="main-footer">
     <div class="container">
-        Powered by <b>XXL Code Generator</b> v0.0.1
+        Powered by <b>XXL Code Generator</b> v0.0.1 二开
         <div class="pull-right hidden-xs">
             <strong>Copyright &copy; 2018-${.now?string('yyyy')} &nbsp;
-                <a href="http://www.xuxueli.com/" target="_blank" >xuxueli</a>
-                <a href="https://github.com/xuxueli/xxl-code-generator" target="_blank" >github</a>
+                <a href="http://www.kingsman.xin/xxl-code-generator/" target="_blank" >songhao</a>
+                <a href="https://github.com/FlashMickeyMouse/xxl-song-code-generator" target="_blank" >github</a>
             </strong><!-- All rights reserved. -->
         </div>
     </div>

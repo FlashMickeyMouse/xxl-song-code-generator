@@ -1,8 +1,8 @@
 package com.xxl.codegenerator.admin.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.xxl.codegenerator.admin.model.ReturnT;
 import com.xxl.codegenerator.admin.util.FreemarkerUtil;
+import com.xxl.codegenerator.admin.util.IpUtils;
 import com.xxl.codegenerator.core.CodeGeneratorTool;
 import com.xxl.codegenerator.core.model.ClassInfo;
 import freemarker.template.TemplateException;
@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,19 +23,22 @@ import java.util.Map;
  *
  * @author xuxueli 2017-08-01 21:39:47
  */
+
 @Controller
 public class IndexController {
     private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
 
     @RequestMapping("/")
-    public String index() {
+    public String index(HttpServletRequest request) {
+
+        logger.info("index访问ip {}", IpUtils.getIpFromRequest(request));
         return "index";
     }
 
     @RequestMapping("/codeGenerate")
     @ResponseBody
-    public ReturnT<Map<String, String>> codeGenerate(String tableSql) {
-
+    public ReturnT<Map<String, String>> codeGenerate(String tableSql ,HttpServletRequest request) {
+        logger.info("codeGenerate访问ip {}", IpUtils.getIpFromRequest(request));
         try {
 
             if (StringUtils.isBlank(tableSql)) {
@@ -58,7 +62,7 @@ public class IndexController {
             result.put("dao_code", FreemarkerUtil.processString("dao.ftl", params));
             result.put("mybatis_code", FreemarkerUtil.processString("mybatis.ftl", params));
             result.put("model_code", FreemarkerUtil.processString("model.ftl", params));
-
+            result.put("iview_code", FreemarkerUtil.processString("iview.ftl", params));
             return new ReturnT<Map<String, String>>(result);
         } catch (IOException | TemplateException e) {
             logger.error(e.getMessage(), e);
@@ -70,8 +74,8 @@ public class IndexController {
 
     @RequestMapping("/codeGenerateCustom")
     @ResponseBody
-    public ReturnT<Map<String, String>> codeGenerateCustom(String tableSql,String customftl) {
-
+    public ReturnT<Map<String, String>> codeGenerateCustom(String tableSql,String customftl,HttpServletRequest request) {
+        logger.info("codeGenerateCustom访问ip {}", IpUtils.getIpFromRequest(request));
         try {
 
             if (StringUtils.isBlank(tableSql)) {
@@ -93,7 +97,6 @@ public class IndexController {
             // result
             Map<String, String> result = new HashMap<String, String>();
 
-            System.out.println(JSON.toJSONString(params));
             result.put("custom_code", FreemarkerUtil.processString("emmmm",customftl, params));
 
 

@@ -123,7 +123,7 @@ CREATE TABLE `userinfo` (
                             <!-- Tabs within a box -->
                             <ul class="nav nav-tabs pull-right">
                                 <li class="pull-left header">生成代码</li>
-
+                                <li><a href="#iview" data-toggle="tab">iview</a></li>
                                 <li><a href="#model" data-toggle="tab">Model</a></li>
                                 <li><a href="#mybatis" data-toggle="tab">Mybatis</a></li>
                                 <li><a href="#dao" data-toggle="tab">Dao</a></li>
@@ -167,6 +167,11 @@ CREATE TABLE `userinfo` (
                                 <div class="chart tab-pane active" id="model">
                                     <div class="box-body ">
                                         Model：<textarea id="model_ide"></textarea>
+                                    </div>
+                                </div>
+                                <div class="chart tab-pane active" id="iview">
+                                    <div class="box-body ">
+                                        Model：<textarea id="iview_ide"></textarea>
                                     </div>
                                 </div>
                             </div>
