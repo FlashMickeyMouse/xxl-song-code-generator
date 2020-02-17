@@ -20,6 +20,28 @@ $(function () {
 
     initTableSql();
 
+
+    /**
+     * 初始化 select sql
+     */
+    var selectSqlIDE;
+
+    function initSelectSql() {
+        selectSqlIDE = CodeMirror.fromTextArea(document.getElementById("selectSql"), {
+            lineNumbers: true,
+            matchBrackets: true,
+            mode: "text/x-sql",
+            lineWrapping: false,
+            readOnly: false,
+            foldGutter: true,
+            gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+        });
+        selectSqlIDE.setSize('auto', 'auto');
+    }
+
+    initSelectSql();
+
+
     var trashyJsonIDE;
     function trashyJson() {
         trashyJsonIDE = CodeMirror.fromTextArea(document.getElementById("trashyJson"), {
@@ -68,6 +90,7 @@ $(function () {
     var mybatis_ide;
     var model_ide;
     var iview_ide;
+    var selectSql_ide;
 
     function initCodeArea() {
 
@@ -164,6 +187,19 @@ $(function () {
             gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
         });
         iview_ide.setSize('auto', 'auto');
+
+
+        // selectSql_ide
+        selectSql_ide = CodeMirror.fromTextArea(document.getElementById("selectSql_ide"), {
+            lineNumbers: true,
+            matchBrackets: true,
+            mode: "text/x-java",
+            lineWrapping: true,
+            readOnly: true,
+            foldGutter: true,
+            gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+        });
+        selectSql_ide.setSize('auto', 'auto');
     }
 
     initCodeArea();
@@ -222,6 +258,47 @@ $(function () {
         });
 
     });
+
+
+
+
+    /**
+     * 生成 select sql 代码
+     */
+    $('#selectSqlParseGenerate').click(function () {
+
+        var selectSql = selectSqlIDE.getValue();
+
+        $.ajax({
+            type: 'POST',
+            url: base_url + "/selectSqlParseGenerate",
+            data: {
+                "selectSql": selectSql
+            },
+            dataType: "json",
+            success: function (data) {
+                if (data.code == 200) {
+                    layer.open({
+                        icon: '1',
+                        content: "代码生成成功",
+                        end: function (layero, index) {
+
+                            selectSql_ide.setValue(data.data.selectsqlVO_code);
+                            selectSql_ide.setSize('auto', 'auto');
+
+                        }
+                    });
+                } else {
+                    layer.open({
+                        icon: '2',
+                        content: (data.msg || '代码生成失败')
+                    });
+                }
+            }
+        });
+
+    });
+
 
 
     /**

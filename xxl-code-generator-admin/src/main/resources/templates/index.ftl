@@ -54,6 +54,39 @@ CREATE TABLE `userinfo` (
                         </div>
 
 
+                        <#-- select 语句  -->
+                        <div class="box box-default">
+                            <div class="box-header with-border">
+                                <h4 class="pull-left">select sql 信息</h4>
+                                <button type="button" class="btn btn-default btn-xs pull-right"
+                                        id="selectSqlParseGenerate">select sql生成代码 VO
+                                </button>
+                            </div>
+                            <div class="box-body">
+                                <ul class="chart-legend clearfix">
+                                    <li>
+                                        <small class="text-muted">
+                                            <textarea id="selectSql" placeholder="请输入select Sql信息...">
+        SELECT
+            table1.id,
+            table2.id AS base_id,
+            table3.id AS new_id,
+            -- 名称
+            table1.`name`,
+            -- 性别
+            table2.sex,
+            table3.weight,
+            -- 备注
+            pm_cattle.`comment`
+        FROM ...
+                                            </textarea>
+                                        </small>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+
                         <#-- 自定义模板 -->
                         <div class="box box-default">
                             <div class="box-header with-border">
@@ -123,6 +156,7 @@ CREATE TABLE `userinfo` (
                             <!-- Tabs within a box -->
                             <ul class="nav nav-tabs pull-right">
                                 <li class="pull-left header">生成代码</li>
+                                <li><a href="#select_sql" data-toggle="tab">selectSqlVO</a></li>
                                 <li><a href="#iview" data-toggle="tab">iview</a></li>
                                 <li><a href="#model" data-toggle="tab">Model</a></li>
                                 <li><a href="#mybatis" data-toggle="tab">Mybatis</a></li>
@@ -171,7 +205,12 @@ CREATE TABLE `userinfo` (
                                 </div>
                                 <div class="chart tab-pane active" id="iview">
                                     <div class="box-body ">
-                                        Model：<textarea id="iview_ide"></textarea>
+                                        iview：<textarea id="iview_ide"></textarea>
+                                    </div>
+                                </div>
+                                <div class="chart tab-pane active" id="select_sql">
+                                    <div class="box-body ">
+                                        selectSqlVO：<textarea id="selectSql_ide"></textarea>
                                     </div>
                                 </div>
                             </div>
