@@ -109,7 +109,7 @@
                                             console.log(params);
                                             axios
                                                 .request({
-                                                    url: `${classInfo.className?uncap_first}/${params.row.id}`,
+                                                    url: `${classInfo.className?uncap_first}/${r'${params.row.id}'}`,
                                                     method: "get"
                                                 })
                                                 .then(res => {
@@ -185,7 +185,7 @@
             get${classInfo.className?uncap_first}(page, size) {
                 axios
                     .request({
-                        url: `${classInfo.className?uncap_first}/${page}/${size}`,
+                        url: `${classInfo.className?uncap_first}/${r'${page}'}/${r'${size}'}`,
                         method: "post",
                         data: this.queryConditions
                     })
@@ -247,7 +247,7 @@
                         } else {
                             axios
                                 .request({
-                                    url: `${classInfo.className?uncap_first}/${id}`,
+                                    url: `${classInfo.className?uncap_first}/${r'${id}'}`,
                                     method: "put",
                                     data: this.${classInfo.className?uncap_first}
                                 })
@@ -270,7 +270,7 @@
                 // alert(idCard);
                 axios
                     .request({
-                        url: `${classInfo.className?uncap_first}/${id}`,
+                        url: `${classInfo.className?uncap_first}/${r'${id}'}`,
                         method: "delete"
                     })
                     .then(res => {
