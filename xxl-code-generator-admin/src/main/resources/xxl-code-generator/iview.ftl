@@ -177,7 +177,7 @@
             selectData: []
         };
         },
-        mounted() {
+        created() {
             this.getAllForSelect();
             this.get${classInfo.className?uncap_first}(this.pageNum, 10);
         },
